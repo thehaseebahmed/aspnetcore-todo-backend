@@ -15,9 +15,8 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
 
     public Task<TResponse> Handle(
         TRequest request,
-        CancellationToken cancellationToken,
-        RequestHandlerDelegate<TResponse> next
-    )
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
         var validationFailures = _validators
             .Select(validator => validator.Validate(request))

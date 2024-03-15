@@ -14,7 +14,7 @@ public static class IServicesCollectionExtensions
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(DummyClass).Assembly);
-        services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<Application.DummyClass>());
         services.AddValidatorsFromAssemblyContaining<DummyClass>();
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
